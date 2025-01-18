@@ -86,6 +86,4 @@ app.add_handler(CommandHandler("read", readNote))
 app.add_handler(CommandHandler("help", help))
 app.add_handler(CommandHandler("list", listDB))
 
-
-
 app.run_polling()
