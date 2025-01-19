@@ -104,5 +104,15 @@ def edit(judul, op, upD):
     
     return f"Meng-update data dengan judul {judul}"
 
+def delDBAll():
+    conn, cursor = koneksi() 
+    cursor.execute("DELETE FROM data_notes")
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return "Berhasil menghapus semua tabel"
+
 conn, cursor = koneksi() 
 conn.close()
