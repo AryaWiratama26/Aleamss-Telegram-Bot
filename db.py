@@ -112,7 +112,7 @@ def delDBAll():
     cursor.close()
     conn.close()
     
-    return "Berhasil menghapus semua tabel"
+    return "Berhasil menghapus semua data"
 
 conn, cursor = koneksi() 
 conn.close()
