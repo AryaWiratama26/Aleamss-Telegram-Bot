@@ -78,6 +78,15 @@ Waktu   : {waktu}
 ================="""
         
     return hasil
+
+def dell(judul):
+    conn, cursor = koneksi() 
+    cursor.execute("DELETE FROM data_notes WHERE judul = %s", (judul,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return f"Note dengan judul : {judul} telah di hapus"
         
 
 conn, cursor = koneksi() 

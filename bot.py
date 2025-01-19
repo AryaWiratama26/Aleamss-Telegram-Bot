@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from telegram import Update, BotCommand
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from groq import Groq
-from db import create_db, add_data, koneksi, read, all
+from db import create_db, add_data, koneksi, read, all, dell
 
 # Load token
 load_dotenv()
@@ -68,6 +68,12 @@ async def readNote(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def listDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(all())
     
+async def delDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    judul = context.args
+    finals = "".join(judul).strip()
+    await update.message.reply_text(dell(finals))
+    await update.message.reply_text(all())
+    
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("""
 /hello untuk menyapa bot
@@ -85,5 +91,6 @@ app.add_handler(CommandHandler("note", note))
 app.add_handler(CommandHandler("read", readNote))
 app.add_handler(CommandHandler("help", help))
 app.add_handler(CommandHandler("list", listDB))
+app.add_handler(CommandHandler("del", delDB))
 
 app.run_polling()
