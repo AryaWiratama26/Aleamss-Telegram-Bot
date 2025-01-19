@@ -5,3 +5,5 @@ model `llama`
 
 ![img-0](/ss/img-0.jpeg)
 ![img-1](/ss/img-1.jpeg)
+
+# Note : Project ini akan di update
