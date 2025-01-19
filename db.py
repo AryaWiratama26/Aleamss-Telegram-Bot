@@ -87,7 +87,22 @@ def dell(judul):
     conn.close()
     
     return f"Note dengan judul : {judul} telah di hapus"
+
+def edit(judul, op, upD):
+    conn, cursor = koneksi() 
+    
+    if op == "1":
+        cursor.execute("UPDATE data_notes SET judul = %s WHERE judul = %s",(upD, judul))
+    elif op == "2":    
+        cursor.execute("UPDATE data_notes SET note = %s WHERE judul = %s",(upD, judul))
+    else:
+        cursor.execute("UPDATE data_notes SET waktu = %s WHERE judul = %s",(upD, judul))
         
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return f"Meng-update data dengan judul {judul}"
 
 conn, cursor = koneksi() 
 conn.close()
