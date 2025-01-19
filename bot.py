@@ -34,7 +34,7 @@ async def tanya(update: Update, context: ContextTypes.DEFAULT_TYPE) :
         final_answers = chat_completion.choices[0].message.content
         await update.message.reply_text("Jawaban anda sedang diproses!")
         if final_answers:
-            await update.message.reply_text(f"Jawaban : \n{final_answers}")
+            await update.message.reply_text(f"Jawaban : \n{final_answers}", parse_mode="MarkDown")
         else:
             await update.message.reply_text("Saya tidak dapat memproses")
     except ValueError:
@@ -85,12 +85,20 @@ async def upDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def delDB_All(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(delDBAll())
     
+    
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("""
-/hello untuk menyapa bot
-/tanya bertanya kepada AI
-/note untuk membuat note dengan format <Judul> <Isi-notes> <Tahun> contoh = (Upacara Mengibarkan-bendera 2024-02-02)
-/read membaca note berdasarkan judul""")
+📌 **Daftar Perintah**:
+/hello - Menyapa bot
+/tanya <pertanyaan> - Bertanya ke AI
+/note <Judul> <Isi> <Tanggal> - Menyimpan catatan
+/read <Judul> - Membaca catatan berdasarkan judul
+/list - Menampilkan semua catatan
+/del <Judul> - Menghapus catatan berdasarkan judul
+/edit <Judul> <Isi baru> <Tanggal> - Mengedit catatan
+/rm - Menghapus semua catatan
+/help - Menampilkan daftar perintah 
+""", parse_mode="Markdown")
     
 
 app = ApplicationBuilder().token(BOT_TOKEN).build()
