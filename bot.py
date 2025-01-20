@@ -58,19 +58,21 @@ async def note(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ⏰ *Waktu:* {waktu}
     
     Data berhasil disimpan""", parse_mode="MarkDown")
- 
+    
+    await update.message.reply_text(all())
+    
 # Fungsi Baca Note   
 async def readNote(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    judul = context.args
-    finals = "".join(judul).strip()
+    id_notess = context.args
+    finals = "".join(id_notess).strip()
     await update.message.reply_text(read(finals))
     
 async def listDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(all())
     
 async def delDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    judul = context.args
-    finals = "".join(judul).strip()
+    id_notess = context.args
+    finals = "".join(id_notess).strip()
     await update.message.reply_text(dell(finals))
     await update.message.reply_text(all())
     

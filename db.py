@@ -47,13 +47,13 @@ def add_data(judul, notes, waktu):
 # create_db()
 # add_data("Halow", "Kaciww", "2024-01-31")
 
-def read(judul):
+def read(id_note):
     conn, cursor = koneksi() 
-    cursor.execute("SELECT note, waktu FROM data_notes WHERE judul = %s", (judul,))
+    cursor.execute("SELECT id_note, note, waktu FROM data_notes WHERE id_note = %s", (id_note,))
     result = cursor.fetchall()    
     
     if result:
-        return f"Note: {result[0][0]}\nWaktu: {result[0][1]}"
+        return f"ID : {result[0][0]}\nNote: {result[0][1]}\nWaktu: {result[0][2]}"
     else:
         return "Note tidak ada"
     
@@ -66,12 +66,14 @@ def all():
     hitung = 0
     for row in result:
         hitung += 1
+        id = row[0]
         judul = row[1]
         note = row[2]
         waktu = row[3]
         hasil += f""""       
 Data ke-{hitung}:
 =================
+ID      : {id}
 Judul   : {judul}
 Note    : {note}
 Waktu   : {waktu}
@@ -79,14 +81,14 @@ Waktu   : {waktu}
         
     return hasil
 
-def dell(judul):
+def dell(id_note):
     conn, cursor = koneksi() 
-    cursor.execute("DELETE FROM data_notes WHERE judul = %s", (judul,))
+    cursor.execute("DELETE FROM data_notes WHERE id_note = %s", (id_note,))
     conn.commit()
     cursor.close()
     conn.close()
     
-    return f"Note dengan judul : {judul} telah di hapus"
+    return f"Note dengan judul : {id_note} telah di hapus"
 
 def edit(judul, op, upD):
     conn, cursor = koneksi() 
