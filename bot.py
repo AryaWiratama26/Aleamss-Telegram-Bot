@@ -4,6 +4,7 @@ from telegram import Update, BotCommand
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from groq import Groq
 from db import create_db, add_data, koneksi, read, all, dell, edit, delDBAll
+import re
 
 # Load token
 load_dotenv()
@@ -42,24 +43,31 @@ async def tanya(update: Update, context: ContextTypes.DEFAULT_TYPE) :
 
 # Fungsi Tambah Note
 async def note(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    note = context.args
-    judul = note[0].strip()
-    notes = note[1].strip()
-    waktu = note[2].strip()
+    note = "".join(context.args)
     
-    koneksi()
-    create_db()
-    add_data(judul, notes, waktu)
+    pola = r'"([^"]+)"'
+    cari_pola = re.findall(pola, note)    
     
-    await update.message.reply_text(f"""
-    Catatan Anda : 
-    📝 *Judul:* {judul}
-    📌 *Catatan:* {notes}
-    ⏰ *Waktu:* {waktu}
+    judul, notes, waktu = cari_pola
+    # judul = "".join(cari_pola[0]).strip()
+    # notes = "". join(cari_pola[1]).strip()
+    # waktu = cari_pola[2].strip()
     
-    Data berhasil disimpan""", parse_mode="MarkDown")
+    await update.message.reply_text(f"{judul}, {notes}, {waktu}")
     
-    await update.message.reply_text(all())
+    # koneksi()
+    # create_db()
+    # add_data(judul, notes, waktu)
+    
+    # await update.message.reply_text(f"""
+    # Catatan Anda : 
+    # 📝 *Judul:* {judul}
+    # 📌 *Catatan:* {notes}
+    # ⏰ *Waktu:* {waktu}
+    
+    # Data berhasil disimpan""", parse_mode="MarkDown")
+    
+    # await update.message.reply_text(all())
     
 # Fungsi Baca Note   
 async def readNote(update: Update, context: ContextTypes.DEFAULT_TYPE):
