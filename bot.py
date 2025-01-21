@@ -82,11 +82,15 @@ async def delDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(all())
     
 async def upDB(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    note = context.args
-    judul = note[0].strip()
-    par = note[1].strip()
-    waktu = note[2].strip()
-    await update.message.reply_text(edit(judul, par, waktu))
+    note = " ".join(context.args)
+    
+    pola = r'"([^"]+)"'
+    cari_pola = re.findall(pola, note)    
+    
+    id_notess, par,replace_note = cari_pola
+    
+    # await update.message.reply_text(f"{id_notess},{par},{replace_note}")
+    await update.message.reply_text(edit(id_notess, par, replace_note))
     await update.message.reply_text(all())
     
 async def delDB_All(update: Update, context: ContextTypes.DEFAULT_TYPE):

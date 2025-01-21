@@ -62,6 +62,9 @@ def all():
     cursor.execute("SELECT * FROM data_notes")
     result = cursor.fetchall()
     
+    if not result:
+        return "Anda tidak punya catatan"
+    
     hasil = ""
     hitung = 0
     for row in result:
@@ -90,21 +93,23 @@ def dell(id_note):
     
     return f"Note dengan judul : {id_note} telah di hapus"
 
-def edit(judul, op, upD):
+def edit(id_note, op, upD):
     conn, cursor = koneksi() 
     
     if op == "1":
-        cursor.execute("UPDATE data_notes SET judul = %s WHERE judul = %s",(upD, judul))
+        cursor.execute("UPDATE data_notes SET judul = %s WHERE id_note = %s",(upD, id_note))
     elif op == "2":    
-        cursor.execute("UPDATE data_notes SET note = %s WHERE judul = %s",(upD, judul))
+        cursor.execute("UPDATE data_notes SET note = %s WHERE id_note = %s",(upD, id_note))
+    elif op == "3":
+        cursor.execute("UPDATE data_notes SET waktu = %s WHERE id_note = %s",(upD, id_note))
     else:
-        cursor.execute("UPDATE data_notes SET waktu = %s WHERE judul = %s",(upD, judul))
+        return "Angka hanya 1 sampai 3"
         
     conn.commit()
     cursor.close()
     conn.close()
     
-    return f"Meng-update data dengan judul {judul}"
+    return f"Meng-update data dengan id {id_note}"
 
 def delDBAll():
     conn, cursor = koneksi() 
