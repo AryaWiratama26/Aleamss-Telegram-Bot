@@ -91,7 +91,7 @@ def dell(id_note):
     cursor.close()
     conn.close()
     
-    return f"Note dengan judul : {id_note} telah di hapus"
+    return f"Note dengan id : {id_note} telah di hapus"
 
 def edit(id_note, op, upD):
     conn, cursor = koneksi() 
@@ -103,7 +103,7 @@ def edit(id_note, op, upD):
     elif op == "3":
         cursor.execute("UPDATE data_notes SET waktu = %s WHERE id_note = %s",(upD, id_note))
     else:
-        return "Angka hanya 1 sampai 3"
+        return "Opsi hanya 1 sampai 3"
         
     conn.commit()
     cursor.close()

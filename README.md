@@ -57,6 +57,12 @@ _(Opsi: 1=Judul, 2=Isi, 3=Waktu)_
 
 ---
 
+## Screenshot Demo
+![2](/ss/2.jpeg)
+![3](/ss/3.jpeg)
+![4](/ss/4.jpeg)
+![1](/ss/1.jpeg)
+
 ## Kontak
-[aryawiratama2401@gmail.com](aryawiratama2401@gmail.com).
+[aryawiratama2401@gmail.com](mailto:aryawiratama2401@gmail.com).
 
