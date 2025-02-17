@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from telegram import Update, BotCommand
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from groq import Groq
-from db import create_db, add_data, koneksi, read, all, dell, edit, delDBAll
+from db import *
 import re
 
 # Load token
