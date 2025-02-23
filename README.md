@@ -16,7 +16,7 @@ Aleams Bot adalah sebuah bot telegram yang melakukan create, update, remove data
 | `/read <ID>` | Membaca catatan berdasarkan ID |
 | `/list` | Menampilkan semua catatan |
 | `/del <ID>` | Menghapus catatan berdasarkan ID |
-| `/edit "ID" "Opsi" "Perubahan"` | Mengedit catatan berdasarkan ID (Opsi 1 : Judul, Opsi 2 : Note, Opsi 3 : Perubahan) |
+| `/edit "ID" "Opsi" "Perubahan"` | Mengedit catatan berdasarkan ID (Opsi 1 : Judul, Opsi 2 : Note, Opsi 3 : Tanggal) |
 | `/rm` | Menghapus semua catatan |
 | `/help` | Menampilkan daftar perintah |
 
